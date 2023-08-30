@@ -8,7 +8,7 @@ export const ContactList = () => {
   console.log(contactsState);
   const filterState = useSelector(getFilterValue);
 
-  if (!contactsState?.length) {
+  if (!contactsState.length) {
     return <p>No contacts added yet.</p>;
   }
 
