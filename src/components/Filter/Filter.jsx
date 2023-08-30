@@ -10,7 +10,7 @@ export const Filter = () => {
       <input
         type="text"
         name="filter"
-        onChange={e => dispatch(filterValue(e.target.value))}
+        onChange={event => dispatch(filterValue(event.target.value))}
       />
     </StyledFilter>
   );
