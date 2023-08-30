@@ -6,9 +6,13 @@ export const ContactList = () => {
   const contactsState = useSelector(getContacts);
   const filterState = useSelector(getFilterValue);
 
-  const filteredContacts = contactsState?.filter(contact =>
-    contact?.name?.toLowerCase().includes(filterState.toLowerCase())
+  const filteredContacts = contactsState.filter(contact =>
+    contact.name.toLowerCase().includes(filterState.toLowerCase())
   );
+
+  //  const filteredContacts = contactsState?.filter(contact =>
+  //    contact?.name?.toLowerCase().includes(filterState.toLowerCase())
+  //  );
 
   if (!contactsState?.length) {
     return <p>No contacts added yet.</p>;
