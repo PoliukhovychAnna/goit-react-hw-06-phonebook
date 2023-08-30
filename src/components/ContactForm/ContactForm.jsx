@@ -1,13 +1,61 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { getContacts } from 'redux/selectors';
 import { ContactFormContainer } from './Styled.ContactForm';
 import { addContact } from 'redux/contactsSlice';
+import { toast } from 'react-toastify';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
+  const contactsState = useSelector(getContacts);
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.target;
+
+    if (
+      contactsState.find(contact =>
+        contact.name
+          .toLowerCase()
+          .includes(form.elements.name.value.toLowerCase())
+      )
+    ) {
+      toast.warn(`${form.elements.name.value} is already in contacts`, {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+      form.reset();
+      return;
+    }
+
+    if (
+      contactsState.find(
+        contact => contact.number === form.elements.number.value
+      )
+    ) {
+      toast.warn(
+        `Contact with number ${form.elements.number.value} already exists`,
+        {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        }
+      );
+      form.reset();
+      return;
+    }
+
     const newContact = {
       name: form.elements.name.value,
       number: form.elements.number.value,

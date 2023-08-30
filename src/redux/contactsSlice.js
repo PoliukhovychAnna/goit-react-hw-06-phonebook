@@ -1,5 +1,4 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
 
 const contactsSlice = createSlice({
   name: 'contacts',
@@ -14,20 +13,7 @@ const contactsSlice = createSlice({
   reducers: {
     addContact: {
       reducer(state, action) {
-        state.find(contact =>
-          contact.name.toLowerCase().includes(action.payload.name.toLowerCase())
-            ? toast.warn(`${action.payload.name} is already in contacts`, {
-                position: 'top-right',
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: 'light',
-              })
-            : state.unshift(action.payload)
-        );
+        state = state.unshift(action.payload);
       },
       prepare(data) {
         return {
