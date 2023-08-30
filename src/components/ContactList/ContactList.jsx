@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { getContacts, getFilterValue } from 'redux/selectors';
 import { Contact } from 'components/Contact/Contact';
 import { List } from './Styled.List';
+
 export const ContactList = () => {
   const contactsState = useSelector(getContacts);
   console.log(contactsState);

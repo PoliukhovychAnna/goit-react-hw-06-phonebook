@@ -13,13 +13,17 @@ export const ContactForm = () => {
     e.preventDefault();
     const form = e.target;
 
-    if (
-      contactsState.find(contact =>
-        contact.name
-          .toLowerCase()
-          .includes(form.elements.name.value.toLowerCase())
-      )
-    ) {
+    const isNameInContacts = contactsState.find(contact =>
+      contact.name
+        .toLowerCase()
+        .includes(form.elements.name.value.toLowerCase())
+    );
+
+    const isNumberInContacts = contactsState.find(
+      contact => contact.number === form.elements.number.value
+    );
+
+    if (isNameInContacts) {
       toast.warn(`${form.elements.name.value} is already in contacts`, {
         position: 'top-right',
         autoClose: 5000,
@@ -34,11 +38,7 @@ export const ContactForm = () => {
       return;
     }
 
-    if (
-      contactsState.find(
-        contact => contact.number === form.elements.number.value
-      )
-    ) {
+    if (isNumberInContacts) {
       toast.warn(
         `Contact with number ${form.elements.number.value} already exists`,
         {
