@@ -4,7 +4,12 @@ import { Contact } from 'components/Contact/Contact';
 import { List } from './Styled.List';
 export const ContactList = () => {
   const contactsState = useSelector(getContacts);
+  console.log(contactsState);
   const filterState = useSelector(getFilterValue);
+
+  if (!contactsState?.length) {
+    return <p>No contacts added yet.</p>;
+  }
 
   const filteredContacts = contactsState.filter(contact =>
     contact.name.toLowerCase().includes(filterState.toLowerCase())
@@ -13,10 +18,6 @@ export const ContactList = () => {
   //  const filteredContacts = contactsState?.filter(contact =>
   //    contact?.name?.toLowerCase().includes(filterState.toLowerCase())
   //  );
-
-  if (!contactsState?.length) {
-    return <p>No contacts added yet.</p>;
-  }
 
   if (!filteredContacts?.length) {
     return <p>No matches.</p>;
