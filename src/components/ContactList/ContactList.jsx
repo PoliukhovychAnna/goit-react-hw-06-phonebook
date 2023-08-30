@@ -14,6 +14,7 @@ export const ContactList = () => {
   const filteredContacts = contactsState.filter(contact =>
     contact.name.toLowerCase().includes(filterState.toLowerCase())
   );
+  console.log(filteredContacts);
 
   //  const filteredContacts = contactsState?.filter(contact =>
   //    contact?.name?.toLowerCase().includes(filterState.toLowerCase())
