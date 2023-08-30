@@ -4,10 +4,11 @@ import { Contact } from 'components/Contact/Contact';
 import { List } from './Styled.List';
 export const ContactList = () => {
   const contactsState = useSelector(getContacts);
+  console.log(contactsState);
   const filterState = useSelector(getFilterValue);
 
-  const filteredContacts = contactsState.filter(contact =>
-    contact.name.toLowerCase().includes(filterState.toLowerCase())
+  const filteredContacts = contactsState?.filter(contact =>
+    contact?.name?.toLowerCase().includes(filterState.toLowerCase())
   );
 
   if (!contactsState?.length) {
