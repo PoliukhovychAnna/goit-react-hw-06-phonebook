@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { Contact } from 'components/Contact/Contact';
 import { List } from './Styled.List';
 export const ContactList = () => {
-  const getContacts = useSelector(state => state.contacts.contacts);
+  const getContacts = useSelector(state => state.contacts);
   console.log(getContacts);
   const getFilterValue = useSelector(state => state.filter);
 
